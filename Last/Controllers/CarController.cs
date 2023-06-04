@@ -36,6 +36,7 @@ namespace Last.Controllers
             {
                 var validationResult = value.Validate();
                 if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+
                 avto.Add(value);
                 return Ok($"{value} has been added");
             }

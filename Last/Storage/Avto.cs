@@ -41,7 +41,7 @@ namespace Last.Storage
 
         public void Add(Car value)
         {
-            if (value.Id != Guid.Empty) throw new Exceptions.IncorrectAvtoException($"Cannot add value with predefined id {value.Id}");
+            if (value.Id == Guid.Empty) throw new Exceptions.IncorrectAvtoException($"Cannot add value with predefined id {value.Id}");
 
             value.Id = Guid.NewGuid();
             this[value.Id] = value;
