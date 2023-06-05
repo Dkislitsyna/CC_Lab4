@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
 using Last.Models;
 using Last.Storage;
 
@@ -14,7 +13,13 @@ namespace Last.Controllers
         [Route("[controller]")]
         public class CarsController : ControllerBase
         {
-            private static IStorage<Car> avto = new Avto();
+            
+            private IStorage<Car> avto;
+
+            public CarsController(IStorage<Car> _avto)
+            {
+                avto = _avto;
+            }
 
             [HttpGet]
             public ActionResult<IEnumerable<Car>> Get()
